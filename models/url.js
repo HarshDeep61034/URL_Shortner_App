@@ -9,9 +9,8 @@ const urlSchema = new mongoose.Schema({
 		required: true,
 		type: String,
 	},
-	vistorHistory: [{ timeStamp: { type: Number } }],
-},
-	{ timeStamps: true }
+	count: { type: Number, default: 0 }
+}
 );
 
 const url = mongoose.model("url", urlSchema);
