@@ -3,16 +3,17 @@ const urlSchema = new mongoose.Schema({
 	shortId: {
 		required: true,
 		type: String,
-		unique: true
+		unique: true,
 	},
-	redirectUrl: {
+	redirectURL: {
 		required: true,
-		type: String
+		type: String,
 	},
-	vistorHistory: [{ timeStamp: { type: String } }],
-	timeStamp: true
-});
+	vistorHistory: [{ timeStamp: { type: Number } }],
+},
+	{ timeStamps: true }
+);
 
 const url = mongoose.model("url", urlSchema);
 
-module.exports = {url}
+module.exports = url
