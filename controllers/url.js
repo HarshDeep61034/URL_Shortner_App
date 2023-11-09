@@ -7,15 +7,15 @@ async function handleGenerateNewShortURL(req, res) {
 	await URL.create({
 		shortId: shortId,
 		redirectURL: body.url,
-		visitorHistory: []
+		count: 0
 	})
-	res.json({ id: shortId });
+	res.render("home", { id: shortId });
 }
 
 async function handleAnalytics(req, res) {
 	const shortId = req.params.id;
 	const result = await URL.findOne({ shortId });
-	return res.json({totalClicks: result.count});
+	return res.json({ totalClicks: result.count });
 }
 
 module.exports = { handleGenerateNewShortURL, handleAnalytics }
