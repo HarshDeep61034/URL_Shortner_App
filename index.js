@@ -1,38 +1,32 @@
 const express = require("express");
 const app = express();
 const { connectToDb } = require("./connect");
-const Router = require("./routes/url");
-const URL = require("./models/url");
-const mongoose = require('mongoose')
-const shortid = require("shortid");
+const urlRouter = require("./routes/url");
+const staticRouter = require("./routes/static");
+const userRouter = require("./routes/user");
+const bodyParser = require('body-parser');
 const path = require("path");
+const authenticateToken = require("./auth");
+const cookieParser = require('cookie-parser');
 
-app.set("view engine", "ejs");
-app.set("views", path.resolve("./views"));
 connectToDb("mongodb://localhost:27017/shortid")
 	.then((res) => console.log("Mongo DB Connected"))
 	.catch((err) => console.log("MongoDB ERROR: ", err));
 
+
+app.set("view engine", "ejs");
+app.set("views", path.resolve("./views"));
+
 // MIDDLEWARES
 app.use(express.json());
+app.use(cookieParser());
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
-app.use("/url", Router);
 
+app.use("/user", userRouter);
+app.use("/url", urlRouter);
+app.use("/", authenticateToken, staticRouter);
 
-app.get("/", async (req, res) => {
-	const allurls = await URL.find({});
-	res.render("home", { urls: allurls });
-})
-// REDIRECTION ON DYNAMIC ID ENDPOINT
-app.get("/:id", async (req, res) => {
-	const shortId = req.params.id;
-	const result = await URL.findOneAndUpdate(
-		{ shortId },
-		{ $inc: { count: 1 } },
-		{ upsert: true, new: true }
-	);
-	res.redirect(result.redirectURL);
-})
 
 
 app.listen(8080, () => console.log("Server Listening at PORT 8080 "));

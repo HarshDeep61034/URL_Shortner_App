@@ -5,61 +5,105 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 </head>
+<style>
+	* {
+		padding: 0;
+		margin: 0;
+		font-family: 'Bebas Neue', sans-serif;
+	}
+
+	nav {
+		background-color: black;
+		color: white;
+		text-align: center;
+		font-size: 20px;
+		padding: 5px 0px;
+		width: 100vw;
+	}
+
+	main {
+		width: 100vw;
+		height: 100vh;
+		background-color: #18181b;
+		color: white;
+	}
+</style>
 
 <body>
-	<h1>URL Shortner App</h1>
-	<% if (locals.id) { %>
+	<nav>
+		<h1>URL Shortner App</h1>
+	</nav>
+	<% if (locals.name) { %>
 		<p>
-			URL Generated: <a href="http://localhost:8080/<%=id%>" target="_blank">http://localhost:8080/<%=id%></a>
+			Hello <%=name%>
 		</p>
 		<% } %>
-			<form method="post" action="/url">
-				<label for="input">Enter URL: </label>
-				<input type="text" id="input" name="url" placeholder="https://example.com">
-				<button type="submit">Generate</button>
-			</form>
+			<% if (locals.id) { %>
+				<p>
+					URL Generated: <a href="http://localhost:8080/<%=id%>" target="_blank">http://localhost:8080/<%=id%>
+							</a>
+				</p>
+				<% } %>
+					<main>
 
-			<div>
-				<% if (locals.urls) { %>
-					<table>
-						<thead>
-							<tr>
-								<th>
-									S. No
-								</th>
-								<th>
-									ShortId
-								</th>
-								<th>
-									Redirect
-								</th>
-								<th>
-									Clicks
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<% urls.forEach((url, index)=> { %>
-								<tr>
-									<td>
-										<%=index+1%>
-									</td>
-									<td>
-										<%=url.shortId%>
-									</td>
-									<td>
-										<%=url.redirectURL%>
-									</td>
-									<td>
-										<%=url.count%>
-									</td>
-								</tr>
-								<% }) %>
-						</tbody>
-					</table>
-					<% } %>
-			</div>
+						<form method="post" action="/url">
+							<label for="input">Enter URL: </label>
+							<input type="text" id="input" name="url" placeholder="https://example.com">
+							<button type="submit">Generate</button>
+						</form>
+
+						<div>
+							<% if (locals.urls) { %>
+								<table>
+									<thead>
+										<tr>
+											<th>
+												S. No
+											</th>
+											<th>
+												ShortId
+											</th>
+											<th>
+												Redirect
+											</th>
+											<th>
+												Clicks
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<% urls.forEach((url, index)=> { %>
+											<% if (url.shortId !=='undefined' && url.shortId !=='favicon.ico' ) { %>
+
+												<tr>
+													<td>
+														<%=index+1%>
+													</td>
+													<td>
+														<%=url.shortId%>
+													</td>
+													<td>
+														<%=url.redirectURL%>
+													</td>
+													<td>
+														<%=url.count%>
+													</td>
+												</tr>
+												<% } else { %>
+													<!-- If it's favicon.ico or undefined, you can still increment the index without rendering a row -->
+													<% index +=1 %>
+														<% } %>
+															<% }) %>
+									</tbody>
+								</table>
+								<% } %>
+						</div>
+
+					</main>
 </body>
 
 </html>
