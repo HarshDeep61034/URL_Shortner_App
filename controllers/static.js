@@ -2,9 +2,10 @@ const URL = require("../models/url");
 const User = require("../models/user")
 
 async function handleGetAllUrls(req, res) {
-	// const user = await User.findOne({ req.user.email });
+	const email = req.user.email;
+	const userindb = await User.findOne({ email });
 	const allurls = await URL.find({});
-	res.render("home", { urls: allurls });
+	res.render("home", { urls: allurls, name: userindb.name });
 }
 
 async function handleRedirection(req, res) {
