@@ -5,8 +5,6 @@ async function handleGenerateNewShortURL(req, res) {
 	const body = req.body;
 	if (!body.url) return res.status(400).json({ error: "url required!" });
 	const shortId = shortid();
-	console.log(shortId);
-	console.log(body.url);
 	if (shortId !== undefined && shortId !== 'favicon.ico') {
 		await URL.create({
 			shortId: shortId,
