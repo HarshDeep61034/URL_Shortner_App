@@ -6,6 +6,8 @@ const jwt = require("jsonwebtoken");
 async function handleCreateNewUser(req, res) {
 	const { name, email, password } = req.body;
 	await User.create({ name, email, password });
+	const accessToken = jwt.sign({ name, email, password }, secretKey);
+	res.cookie('accessToken', accessToken, { httpOnly: true });
 	res.redirect("http://localhost:8080/");
 }
 
