@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/user", userRouter);
-app.use("/url", urlRouter);
+app.use("/url", authenticateToken, urlRouter);
 app.use("/", authenticateToken, staticRouter);
 
 
