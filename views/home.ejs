@@ -16,6 +16,7 @@
 		padding: 0;
 		margin: 0;
 		font-family: 'Poppins', sans-serif;
+		overflow-x: hidden;
 	}
 
 	nav {
@@ -23,8 +24,10 @@
 		color: white;
 		text-align: center;
 		font-size: 20px;
-		padding: 5px 0px;
-		width: 100vw;
+		display: flex;
+		justify-content: space-between;
+		padding: 5px 20px;
+
 	}
 
 	table,
@@ -64,6 +67,10 @@
 <body>
 	<nav>
 		<h1>URL Shortner App</h1>
+		<a href="http://localhost:8080/user/logout">
+			<button id="logout">Logout</button>
+		</a>
+
 	</nav>
 	<% if (locals.name) { %>
 		<p>

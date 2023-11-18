@@ -22,4 +22,9 @@ async function handleLoginUser(req, res) {
 	}
 }
 
-module.exports = { handleCreateNewUser, handleLoginUser }
+function handleLogutUser(req, res) {
+	res.cookie('accessToken', null, { httpOnly: true, expires: new Date(Date.now()), });
+	res.redirect('http://localhost:8080/user/login');
+}
+
+module.exports = { handleCreateNewUser, handleLoginUser, handleLogutUser }
