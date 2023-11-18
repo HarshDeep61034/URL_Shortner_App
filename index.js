@@ -1,19 +1,21 @@
 const express = require("express");
 const app = express();
-const { connectToDb } = require("./connect");
-const urlRouter = require("./routes/url");
+const PORT = 8080;
 const staticRouter = require("./routes/static");
 const userRouter = require("./routes/user");
-const bodyParser = require('body-parser');
-const path = require("path");
+const urlRouter = require("./routes/url");
+const { connectToDb } = require("./connect");
 const authenticateToken = require("./auth");
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const path = require("path");
 
+// Connecting to MongoDB via Mongoose
 connectToDb("mongodb://localhost:27017/shortid")
 	.then((res) => console.log("Mongo DB Connected"))
 	.catch((err) => console.log("MongoDB ERROR: ", err));
 
-
+// Setting ejs as template engine to render SSR pages
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
@@ -23,10 +25,11 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/user", userRouter);
-app.use("/url", authenticateToken, urlRouter);
-app.use("/", authenticateToken, staticRouter);
+// MIDDLEWARES - with custom routers
+app.use("/user", userRouter); // for user register,login,logout.
+app.use("/url", authenticateToken, urlRouter); // for shortUrl creation & fetch analytics.
+app.use("/", authenticateToken, staticRouter); // for Static Pages rendering & url redirection.
 
 
 
-app.listen(8080, () => console.log("Server Listening at PORT 8080 "));
+app.listen(PORT, () => console.log(`Server Listening at PORT: ${PORT}`));
