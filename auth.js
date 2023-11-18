@@ -5,7 +5,7 @@ const secretKey = process.env.JWT_SECRET_KEY;
 const authenticateToken = (req, res, next) => {
 	const token = req.cookies.accessToken;
 
-	if (!token) return res.render("login");
+	if (!token) return res.redirect("http://localhost:8080/user/login");
 
 	jwt.verify(token, secretKey, (err, user) => {
 		if (err) return res.sendStatus(403);
