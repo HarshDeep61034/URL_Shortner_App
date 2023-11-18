@@ -9,7 +9,12 @@ const urlSchema = new mongoose.Schema({
 		required: true,
 		type: String,
 	},
-	count: { type: Number, default: 0 }
+	count: { type: Number, default: 0 },
+	createdBy: {
+		type: String,
+		required: true,
+		unique: true
+	}
 }
 );
 

@@ -10,10 +10,12 @@
 	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 </head>
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 	* {
 		padding: 0;
 		margin: 0;
-		font-family: 'Bebas Neue', sans-serif;
+		font-family: 'Poppins', sans-serif;
 	}
 
 	nav {
@@ -25,11 +27,37 @@
 		width: 100vw;
 	}
 
+	table,
+	th,
+	td {
+		border: 2px solid white;
+		padding: 4px;
+	}
+
 	main {
 		width: 100vw;
 		height: 100vh;
 		background-color: #18181b;
 		color: white;
+	}
+
+	.table-div {
+		width: 100vw;
+		height: 80vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	p {
+		background: #000;
+		color: white;
+		text-align: center;
+	}
+
+	form {
+		text-align: center;
+		padding: 20px 0px;
 	}
 </style>
 
@@ -45,7 +73,7 @@
 			<% if (locals.id) { %>
 				<p>
 					URL Generated: <a href="http://localhost:8080/<%=id%>" target="_blank">http://localhost:8080/<%=id%>
-							</a>
+					</a>
 				</p>
 				<% } %>
 					<main>
@@ -56,52 +84,59 @@
 							<button type="submit">Generate</button>
 						</form>
 
-						<div>
-							<% if (locals.urls) { %>
-								<table>
-									<thead>
-										<tr>
-											<th>
-												S. No
-											</th>
-											<th>
-												ShortId
-											</th>
-											<th>
-												Redirect
-											</th>
-											<th>
-												Clicks
-											</th>
-										</tr>
-									</thead>
-									<tbody>
-										<% urls.forEach((url, index)=> { %>
-											<% if (url.shortId !=='undefined' && url.shortId !=='favicon.ico' ) { %>
+						<% if (locals.info) { %>
+							<a href="http://localhost:8080/">
+								head back to home page!
+							</a>
+							<% } %>
 
+								<div class="table-div">
+									<% if (locals.urls) { %>
+										<table>
+											<thead>
 												<tr>
-													<td>
-														<%=index+1%>
-													</td>
-													<td>
-														<%=url.shortId%>
-													</td>
-													<td>
-														<%=url.redirectURL%>
-													</td>
-													<td>
-														<%=url.count%>
-													</td>
+													<th>
+														S. No
+													</th>
+													<th>
+														ShortId
+													</th>
+													<th>
+														Redirect
+													</th>
+													<th>
+														Clicks
+													</th>
 												</tr>
-												<% } else { %>
-													<!-- If it's favicon.ico or undefined, you can still increment the index without rendering a row -->
-													<% index +=1 %>
-														<% } %>
-															<% }) %>
-									</tbody>
-								</table>
-								<% } %>
-						</div>
+											</thead>
+											<tbody>
+												<% urls.forEach((url, index)=> { %>
+													<% if (url.shortId !=='undefined' && url.shortId !=='favicon.ico' )
+														{ %>
+
+														<tr>
+															<td>
+																<%=index+1%>
+															</td>
+															<td>
+																<%=url.shortId%>
+															</td>
+															<td>
+																<%=url.redirectURL%>
+															</td>
+															<td>
+																<%=url.count%>
+															</td>
+														</tr>
+														<% } else { %>
+															<!-- If it's favicon.ico or undefined, you can still increment the index without rendering a row -->
+															<% index +=1 %>
+																<% } %>
+																	<% }) %>
+											</tbody>
+										</table>
+										<% } %>
+								</div>
 
 					</main>
 </body>
