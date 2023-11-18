@@ -1,5 +1,6 @@
 const User = require("../models/user");
-const secretKey = "H@rsh7017";
+require('dotenv').config();
+const secretKey = process.env.JWT_SECRET_KEY;
 const jwt = require("jsonwebtoken");
 
 async function handleCreateNewUser(req, res) {
