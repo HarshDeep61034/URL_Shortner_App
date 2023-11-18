@@ -4,7 +4,7 @@ const URL = require("../models/url");
 async function handleGenerateNewShortURL(req, res) {
 	const body = req.body;
 	const user = req.user;
-	if (!body.url) return res.status(400).json({ error: "url required!" });
+	if (!body.url) return res.status(400).render("home", { error: "url required!" });
 	const shortId = shortid();
 	if (shortId !== undefined && shortId !== 'favicon.ico') {
 		await URL.create({

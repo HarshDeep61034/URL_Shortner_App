@@ -12,7 +12,7 @@ async function handleCreateNewUser(req, res) {
 async function handleLoginUser(req, res) {
 	const { email, password } = req.body;
 	const user = await User.findOne({ email });
-	if (!user) return res.status(400).render("login", { error: "Invalid Credentials or User doesn't exists!" });
+	if (!user) return res.status(400).render("login", { error: "User doesn't exists!" });
 	if (user.password == password) {
 		const accessToken = jwt.sign({ name: user.name, email, password }, secretKey);
 		res.cookie('accessToken', accessToken, { httpOnly: true });

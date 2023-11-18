@@ -35,9 +35,9 @@
 	}
 
 	table {
-		width: 80%;
+		width: 50%;
 		border-collapse: collapse;
-		margin-top: 100px;
+		margin-top: 200px;
 	}
 
 	th,
@@ -48,7 +48,7 @@
 	}
 
 	main {
-		min-height: 100vh;
+		
 		background-color: #18181b;
 		color: #fff;
 		padding: 20px;
@@ -74,6 +74,10 @@
 		text-align: center;
 		padding: 20px 0;
 	}
+
+	.error {
+		color: red;
+	}
 </style>
 
 <body>
@@ -89,75 +93,81 @@
 			Hello <%=name%>
 		</p>
 		<% } %>
-			<% if (locals.id) { %>
-				<p>
-					URL Generated: <a href="http://localhost:8080/<%=id%>" target="_blank">http://localhost:8080/<%=id%>
-					</a>
+			<% if (locals.error) { %>
+				<p class="error">
+					<%=error%>
 				</p>
 				<% } %>
-					<main>
-
-						<form method="post" action="/url">
-							<label for="input">Enter URL: </label>
-							<input type="text" id="input" name="url" placeholder="https://example.com">
-							<button type="submit">Generate</button>
-						</form>
-
-						<% if (locals.info) { %>
-							<a href="http://localhost:8080/">
-								head back to home page!
+					<% if (locals.id) { %>
+						<p>
+							URL Generated: <a href="http://localhost:8080/<%=id%>"
+								target="_blank">http://localhost:8080/<%=id%>
 							</a>
-							<% } %>
+						</p>
+						<% } %>
+							<main>
 
-								<div class="table-div">
-									<% if (locals.urls) { %>
-										<table>
-											<thead>
-												<tr>
-													<th>
-														S. No
-													</th>
-													<th>
-														ShortId
-													</th>
-													<th>
-														Redirect
-													</th>
-													<th>
-														Clicks
-													</th>
-												</tr>
-											</thead>
-											<tbody>
-												<% urls.forEach((url, index)=> { %>
-													<% if (url.shortId !=='undefined' && url.shortId !=='favicon.ico' )
-														{ %>
+								<form method="post" action="/url">
+									<label for="input">Enter URL: </label>
+									<input type="text" id="input" name="url" placeholder="https://example.com">
+									<button type="submit">Generate</button>
+								</form>
 
+								<% if (locals.info) { %>
+									<a href="http://localhost:8080/">
+										head back to home page!
+									</a>
+									<% } %>
+
+										<div class="table-div">
+											<% if (locals.urls) { %>
+												<table>
+													<thead>
 														<tr>
-															<td>
-																<%=index+1%>
-															</td>
-															<td>
-																<%=url.shortId%>
-															</td>
-															<td>
-																<%=url.redirectURL%>
-															</td>
-															<td>
-																<%=url.count%>
-															</td>
+															<th>
+																S. No
+															</th>
+															<th>
+																ShortId
+															</th>
+															<th>
+																Redirect
+															</th>
+															<th>
+																Clicks
+															</th>
 														</tr>
-														<% } else { %>
-															<!-- If it's favicon.ico or undefined, you can still increment the index without rendering a row -->
-															<% index +=1 %>
-																<% } %>
-																	<% }) %>
-											</tbody>
-										</table>
-										<% } %>
-								</div>
+													</thead>
+													<tbody>
+														<% urls.forEach((url, index)=> { %>
+															<% if (url.shortId !=='undefined' && url.shortId
+																!=='favicon.ico' ) { %>
 
-					</main>
+																<tr>
+																	<td>
+																		<%=index+1%>
+																	</td>
+																	<td>
+																		<%=url.shortId%>
+																	</td>
+																	<td>
+																		<%=url.redirectURL%>
+																	</td>
+																	<td>
+																		<%=url.count%>
+																	</td>
+																</tr>
+																<% } else { %>
+																	<!-- If it's favicon.ico or undefined, you can still increment the index without rendering a row -->
+																	<% index +=1 %>
+																		<% } %>
+																			<% }) %>
+													</tbody>
+												</table>
+												<% } %>
+										</div>
+
+							</main>
 </body>
 
 </html>
