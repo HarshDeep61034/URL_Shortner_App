@@ -48,7 +48,7 @@
 	}
 
 	main {
-		
+
 		background-color: #18181b;
 		color: #fff;
 		padding: 20px;
@@ -148,7 +148,10 @@
 																		<%=index+1%>
 																	</td>
 																	<td>
-																		<%=url.shortId%>
+																		<a
+																			href='http://localhost:8080/<%=url.shortId%>'>
+																			<%=url.shortId%>
+																		</a>
 																	</td>
 																	<td>
 																		<%=url.redirectURL%>
