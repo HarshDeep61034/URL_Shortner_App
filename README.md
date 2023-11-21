@@ -1,6 +1,6 @@
 # URL_Shortner_App
 
-This is a URL Shortner app created using Nodejs, Expressjs, MongoDB, bcrypt, cookie-parser, ejs, Json Web Token,  . The app allows users to manage a virtual library where they can add, remove, and update books. Each book can be displayed with details such as the author, title, number of pages, and whether it has been read or not.
+This is a URL Shortner app created using Nodejs, Expressjs, MongoDB, bcrypt, cookie-parser, ejs, Json Web Token. The app allows users to Shorten their long Urls into short one and keep track of clicks & other info about those url with authentication-based Account Creation.
 
 ## Table of Contents
 
@@ -13,12 +13,12 @@ This is a URL Shortner app created using Nodejs, Expressjs, MongoDB, bcrypt, coo
 
 ## Introduction
 
-The Library App is an extension of the 'Book' example from a previous lesson, where we have implemented a basic library system with the following functionalities:
+The URL Shortener App is an Web based Application to shorten your urls into shorter ones.
 
-1. Add new books to the library.
-2. Display the list of books in the library.
-3. Remove books from the library.
-4. Change the read status of books.
+1. Input Url which you wanna redirect to.
+3. Display the list of books in the library.
+4. Remove books from the library.
+5. Change the read status of books.
 
 The app uses a simple array to store book objects, and the user can interact with the library through a user-friendly interface.
 
