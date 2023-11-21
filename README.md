@@ -16,9 +16,9 @@ This is a URL Shortner app created using Nodejs, Expressjs, MongoDB, bcrypt, coo
 The URL Shortener App is an Web based Application to shorten your urls into shorter ones.
 
 1. Input Url which you wanna redirect to.
-3. Display the list of books in the library.
-4. Remove books from the library.
-5. Change the read status of books.
+3. Get the Shortened version of url.
+4. Head back to homepage to keep track of Previously shortened Urls.
+5. Login/Register Functionality.
 
 The app uses a simple array to store book objects, and the user can interact with the library through a user-friendly interface.
 
