@@ -9,9 +9,12 @@ const authenticateToken = require("./auth");
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const path = require("path");
+require('dotenv').config();
+const user = process.env.MONGO_DB_ADMIN;
+const password = process.env.MONGO_DB_PASSWORD;
 
 // Connecting to MongoDB via Mongoose
-connectToDb("mongodb://localhost:27017/shortid")
+connectToDb(`mongodb+srv://${user}:${password}@cluster0.afbycsy.mongodb.net/`)
 	.then((res) => console.log("Mongo DB Connected"))
 	.catch((err) => console.log("MongoDB ERROR: ", err));
 
