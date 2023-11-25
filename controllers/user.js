@@ -10,7 +10,7 @@ async function handleCreateNewUser(req, res) {
 	await User.create({ name, email, password: hashedPassword });
 	const accessToken = jwt.sign({ name, email }, secretKey);
 	res.cookie('accessToken', accessToken, { httpOnly: true });
-	res.redirect("http://localhost:8080/");
+	res.redirect("/");
 }
 
 async function handleLoginUser(req, res) {
@@ -21,7 +21,7 @@ async function handleLoginUser(req, res) {
 	if (passwordMatch) {
 		const accessToken = jwt.sign({ name: user.name, email }, secretKey);
 		res.cookie('accessToken', accessToken, { httpOnly: true });
-		res.redirect("http://localhost:8080/");
+		res.redirect("/");
 	}
 	else {
 		return res.status(400).render("login", { error: "Invalid Password" });
@@ -30,7 +30,7 @@ async function handleLoginUser(req, res) {
 
 function handleLogutUser(req, res) {
 	res.cookie('accessToken', null, { httpOnly: true, expires: new Date(Date.now()), });
-	res.redirect('http://localhost:8080/user/login');
+	res.redirect('/user/login');
 }
 
 module.exports = { handleCreateNewUser, handleLoginUser, handleLogutUser }
