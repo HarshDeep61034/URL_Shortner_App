@@ -1,6 +1,6 @@
-# URL_Shortner_App
+# URL Shortener App
 
-This is a URL Shortner app created using Nodejs, Expressjs, MongoDB, bcrypt, cookie-parser, ejs, Json Web Token. The app allows users to Shorten their long Urls into short one and keep track of clicks & other info about those url with authentication-based Account Creation.
+This URL Shortener app, built with Node.js, Express.js, MongoDB, bcrypt, cookie-parser, ejs, and Json Web Token, empowers users to transform lengthy URLs into concise ones. The application incorporates authentication-based account creation, enabling users to keep track of click statistics and other relevant information for their shortened URLs.
 
 ## Table of Contents
 
@@ -13,58 +13,56 @@ This is a URL Shortner app created using Nodejs, Expressjs, MongoDB, bcrypt, coo
 
 ## Introduction
 
-The URL Shortener App is an Web based Application to shorten your urls into shorter ones.
+The URL Shortener App is a web-based application designed to efficiently shorten URLs.
 
-1. Input Url which you wanna redirect to.
-3. Get the Shortened version of url.
-4. Head back to homepage to keep track of Previously shortened Urls.
-5. Login/Register Functionality.
+1. Enter the URL you wish to redirect to.
+2. Obtain the shortened version of the URL.
+3. Navigate back to the homepage to monitor previously shortened URLs.
+4. Enjoy the seamless login/register functionality.
 
-The app uses a simple array to store book objects, and the user can interact with the library through a user-friendly interface.
+The app utilizes a straightforward array to store URL objects, ensuring a user-friendly interaction.
 
 ## Features
 
-Here are the main features of the Library App:
+Explore the key features of the URL Shortener App:
 
-- **Add Books:** Users can add new books to the library by providing details such as author, title, number of pages, and whether they have read the book or not.
+- **Shorten URLs:** Users can transform lengthy URLs into shorter, more manageable ones.
 
-- **Display Library:** The app displays the list of books in the library. Each book is shown with its details, and they can be displayed in a table or individual cards.
+- **Click Tracking:** Keep track of the number of clicks and other relevant information for each shortened URL.
 
-- **Remove Books:** Users can remove books from the library by clicking a button associated with each book. The app will remove the selected book from the library.
-
-- **Change Read Status:** Users can mark books as read or unread by clicking a button associated with each book. This updates the read status of the book.
+- **Authentication:** Secure account creation and authentication ensure user privacy and personalized URL management.
 
 ## Getting Started
 
-To get started with the Library App, follow these steps:
+To kickstart your experience with the URL Shortener App, follow these steps:
 
 1. Clone the repository to your local machine:
 
    ```bash
-   git clone https://github.com/HarshDeep61034/Library
+   git clone https://github.com/harshdeep61034/URL_Shortner_App
    ```
 
-2. Open the project directory.
+2. Navigate to the project directory.
 
-3. Open the `index.html` file in your web browser to run the app.
+3. Type npm install & npm start in Terminal  & head over to 'Localhost:6000'.
 
 ## Usage
 
-Once you have the app running, you can use it to manage your virtual library:
+Once the app is up and running, efficiently manage your shortened URLs:
 
-- Click the "NEW BOOK" button to add a new book to the library. Fill in the book details in the form and submit it.
+- Click the "SHORTEN URL" button to transform a long URL into a short one. Enter the URL and submit the form.
 
-- The app will display the list of books in the library, including their details.
+- The app will display a list of your shortened URLs along with relevant details.
 
-- To remove a book from the library, click the "Remove" button associated with that book.
+- To remove a URL, click the "Remove" button associated with it.
 
-- To change the read status of a book, click the "Toggle Read Status" button associated with that book.
+- Experience the convenience of tracking click statistics and managing your URLs securely.
 
-Please note that this version of the app does not include any server-side storage. Book data is stored locally in the JavaScript array and will be lost when you close the app. Future versions of the app may include server-side storage options.
+Please note that this version of the app currently does not incorporate server-side storage. Future iterations may include options for server-side storage.
 
 ## Contributing
 
-Contributions to this project are welcome! If you'd like to contribute, please follow these guidelines:
+Contributions to this project are highly appreciated! To contribute, adhere to these guidelines:
 
 1. Fork the repository.
 
